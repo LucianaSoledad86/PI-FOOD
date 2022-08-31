@@ -1,4 +1,4 @@
-import React, { useEffect, usedata } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
@@ -13,8 +13,8 @@ import styles from '../styles/Create.module.css'
 const Create = () => {
   const dispatch = useDispatch();
   const diets = useSelector((state) => state.diets);
-  const [loading, setLoading] = usedata(false);
-  const [errors, setErrors] = usedata({});
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   let crearReceta = useSelector((state) =>
     state.allRecipes.filter((r) => r.createdInDb)
@@ -22,7 +22,7 @@ const Create = () => {
 
   const unique = [...new Set(diets)];
 
-  const [data, setData] = usedata({
+  const [data, setData] = useState({
     name: "",
     image: "",
     sumary: "",
@@ -170,7 +170,7 @@ const Create = () => {
 
           <div>
             <label>
-              <b>Imagen url:</b>
+              <b>*Imagen url:</b>
             </label>
             <input
               type="text"
@@ -185,7 +185,7 @@ const Create = () => {
 
           <div>
             <label>
-              <b>Resumen del plato</b>
+              <b>*Resumen del plato</b>
             </label>
             <input
               type="text"
@@ -195,6 +195,7 @@ const Create = () => {
               className={styles.input}
               onChange={(e) => handleChange(e)}
             />
+            {errors.sumary && <p className={styles.error}>{errors.sumary}</p>}
           </div>
 
           <div>
@@ -231,7 +232,7 @@ const Create = () => {
 
           <div>
             <label className={styles.label}>
-              <b>Preparación:</b>
+              <b>*Preparación:</b>
             </label>
             <textarea
               value={data.steps}
@@ -242,6 +243,7 @@ const Create = () => {
               className={styles.input}
               onChange={(e) => handleChange(e)}
             ></textarea>
+            {errors.steps && <p className={styles.error}>{errors.steps}</p>}
           </div>
 
           <div>
@@ -350,6 +352,7 @@ const Create = () => {
               />
               Salad
             </label>
+            {errors.dish && <p className={styles.error}>{errors.dish}</p>}
           </div>
 
           <div className={styles.list}>
