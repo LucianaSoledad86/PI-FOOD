@@ -1,0 +1,24 @@
+.animation {
+          display: grid;
+          color: #fb7915;
+          font-size: 70px;
+          white-space: initial;
+          border-right: 2px solid;
+          width: 10ch;
+
+          animation: typing 1s steps(8), blink .8s infinite step-end alternate;
+          overflow: hidden;
+
+}
+
+@keyframes typing {
+          from {
+                    width: 0
+          }
+}
+
+@keyframes blink {
+          50% {
+                    border-color: transparent
+          }
+}

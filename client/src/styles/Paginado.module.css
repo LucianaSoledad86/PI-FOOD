@@ -1,0 +1,23 @@
+.paged {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          background: linear-gradient(180deg, rgb(232, 138, 30) 0%, rgba(179, 152, 122, 0.911) 51%, rgb(147, 96, 57) 100%);
+
+}
+
+.numbers {
+          margin: 10px;
+          padding: 10px;
+          background: none;
+          border: none;
+          border-radius: 5px;
+}
+
+.active {
+          background: rgb(147, 96, 57);
+}
+
+.numbers:hover {
+          background: linear-gradient(180deg, rgba(179, 152, 122, 0.911) 12%, rgb(147, 96, 57) 100%);
+}

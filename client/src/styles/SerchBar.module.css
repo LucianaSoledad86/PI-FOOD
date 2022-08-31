@@ -1,0 +1,39 @@
+.buscar {
+          background: none;
+          border-radius: 30px;
+          padding: 5px;
+          font-size: 0px;
+}
+
+
+
+
+
+.btn {
+
+          border-radius: 8px;
+          height: 40px;
+
+          background: rgba(255, 225, 186, 0.787);
+
+          font-size: 20px;
+          transition: .8s ease;
+}
+
+.btn:hover {
+          background: rgba(255, 225, 186, 0.787);
+}
+
+.input {
+
+
+          width: 200px;
+          background: rgba(207, 207, 207, 0.787);
+          ;
+          transition: all .3s ease;
+          font-size: 18px;
+          color: #fff;
+          outline: none;
+          height: 30px;
+          border-radius: 15px;
+}
