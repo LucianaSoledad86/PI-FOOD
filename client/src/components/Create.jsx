@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, usedata } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
@@ -11,16 +11,18 @@ import styles from '../styles/Create.module.css'
 
 
 const Create = () => {
-  const dispatch = useDispatch()
-  const diets = useSelector((state) => state.diets)
-   const [loading, setLoading] = useState(false)
-   const [errors, setErrors] = useState({})
+  const dispatch = useDispatch();
+  const diets = useSelector((state) => state.diets);
+  const [loading, setLoading] = usedata(false);
+  const [errors, setErrors] = usedata({});
 
-  let crearReceta = useSelector((state) =>state.allRecipes.filter((r) => r.createdInDb))
+  let crearReceta = useSelector((state) =>
+    state.allRecipes.filter((r) => r.createdInDb)
+  );
 
   const unique = [...new Set(diets)];
 
-  const [state, setState] = useState({
+  const [data, setData] = usedata({
     name: "",
     image: "",
     sumary: "",
@@ -31,77 +33,93 @@ const Create = () => {
     dish: "",
   });
 
+  //Modifico la data
   const handleChange = (e) => {
-    setState({
-      ...state,
+    setData({
+      ...data,
       [e.target.name]: e.target.value,
     });
     setErrors(
       validate({
-        ...state,
+        ...data,
         [e.target.name]: e.target.value,
       })
     );
-// console.log(state, "handleChange");
+    // console.log(data, "handleChange");
   };
 
+  //Seleccionar Tipos de platos
   const handleRadio = (e) => {
     if (e.target.checked) {
-      setState({
-        ...state,
+      setData({
+        ...data,
         dish: e.target.value,
       });
     }
   };
 
-  //Seleccionar Dietas
+  //Seleccionar Tipos de dietas
   const handleSelect = (e) => {
-    setState({
-      ...state,
-      diets: [...state.diets, e.target.value],
+    setData({
+      ...data,
+      diets: [...data.diets, e.target.value],
     });
   };
 
+  //Eliminar recetas creadas
   const handleDelete = (e) => {
     e.preventDefault();
-    const filtrarDieta = state.diets.filter((d) => d !== e.target.name);
-    setState({
-      ...state,
+    const filtrarDieta = data.diets.filter((d) => d !== e.target.name);
+    setData({
+      ...data,
       diets: filtrarDieta,
     });
   };
 
   //VALIDACIONES
-  function validate(state) {
+  function validate(data) {
     const errors = {};
 
-    if (!state.name) {
+    if (!data.name) {
       errors.name = "Nombre requerido";
     }
-    if (state.image !== "" && !/^(ftp|http|https):\/\/[^ "]+$/.test(state.image)) {
+    if (data.image !== "" &&!/^(ftp|http|https):\/\/[^ "]+$/.test(data.image)) {
       errors.image = "la imagen tiene que ser una Url ejemplo: http://";
-        }
-    if (state.score < 0 || state.score > 100) {
-      errors.score = "Puntuación valida de 0 a 100";
     }
-    if (state.healthy < 0 || state.healthy > 100) {
+    if (data.sumary.length < 1) {
+       errors.sumary = "El resumen es obligatorio";
+    }
+    if (data.healthy < 0 || data.healthy > 100) {
       errors.healthy = "Saludable valido de 0 a 100";
     }
-    if (!state.dish) {
+    if (data.score < 0 || data.score > 100) {
+      errors.score = "Puntuación valida de 0 a 100";
+    }
+    if (data.steps.length < 10) {
+      errors.steps = "El resumen debe tener al menos 10 caracteres";
+    }
+    if (!data.dish) {
       errors.dish = "Seleccione tipo de plato";
     }
-    if (state.diets?.length === 0) {
+    if (data.diets?.length === 0) {
       errors.diets = "Seleccione al menos un tipo de dieta";
     }
     return errors;
   }
 
+  const newLoading = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1300);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state, "handleSubmit");
-    dispatch(postNewRecipe(state));
+    console.log(data, "handleSubmit");
+    dispatch(postNewRecipe(data));
     alert("Receta creada con éxito");
-    setState({
+    setData({
       name: "",
       image: "",
       sumary: "",
@@ -115,18 +133,11 @@ const Create = () => {
     dispatch(getRecipes());
   };
 
-  const newLoading = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1300);
-  };
-
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(getDiets());
     newLoading();
-  },[]);
+  }, []);
 
   return (
     <div className={styles.fondo}>
@@ -148,7 +159,7 @@ const Create = () => {
             </label>
             <input
               type="text"
-              value={state.name}
+              value={data.name}
               name="name"
               required={true}
               className={styles.input}
@@ -163,7 +174,7 @@ const Create = () => {
             </label>
             <input
               type="text"
-              value={state.image}
+              value={data.image}
               name="image"
               required={true}
               className={styles.input}
@@ -178,7 +189,7 @@ const Create = () => {
             </label>
             <input
               type="text"
-              value={state.sumary}
+              value={data.sumary}
               name="sumary"
               required={true}
               className={styles.input}
@@ -192,7 +203,7 @@ const Create = () => {
             </label>
             <input
               type="number"
-              value={state.healthy}
+              value={data.healthy}
               name="healthy"
               placeholder="0-100"
               required={true}
@@ -208,7 +219,7 @@ const Create = () => {
             </labe>
             <input
               type="number"
-              value={state.score}
+              value={data.score}
               name="score"
               placeholder="0-100"
               required={true}
@@ -223,7 +234,7 @@ const Create = () => {
               <b>Preparación:</b>
             </label>
             <textarea
-              value={state.steps}
+              value={data.steps}
               name="steps"
               placeholder="Ingrese el paso a paso de la preparación de su receta"
               cols="80"
@@ -362,7 +373,7 @@ const Create = () => {
 
         <div>
           <div>
-            {[...new Set(state.diets)].map((diet) => (
+            {[...new Set(data.diets)].map((diet) => (
               <div>
                 <button
                   key={diet}

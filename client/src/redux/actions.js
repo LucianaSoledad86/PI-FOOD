@@ -10,11 +10,10 @@ export const ORDER_SCORE = 'ORDER_SCORE'
 export const CREATED_OR_NOT = 'CREATED_OR_NOT'
 export const FILTER_DIETS = "FILTER_DIETS"
 
+//Recetas
 export const getRecipes = () => async (dispatch) => {
   try {
-       const recipes = await axios.get(
-         "https://pifood-luciana.herokuapp.com/recipes"
-       );
+       const recipes = await axios.get("https://pifood-luciana.herokuapp.com/recipes")
        return dispatch({
          type: GET_RECIPES,
          payload: recipes.data,
@@ -24,6 +23,7 @@ export const getRecipes = () => async (dispatch) => {
   }
 };
 
+//Dietas
 export const getDiets = () => {
   return async (dispatch) => {
     try {
@@ -39,6 +39,7 @@ export const getDiets = () => {
   };
 };
 
+//Busqueda por nombre
 export const serchName = (name) => async (dispatch) => {
           try {
                   const response = await axios.get(`https://pifood-luciana.herokuapp.com/recipes?name=${name}`)
@@ -56,6 +57,7 @@ export const serchName = (name) => async (dispatch) => {
 }
 };
 
+//Detalles
 export const recipeDetails = (id) => async dispatch => {
           try {
               const response = await axios.get(`https://pifood-luciana.herokuapp.com/recipes/${id}`) 
@@ -68,6 +70,7 @@ export const recipeDetails = (id) => async dispatch => {
           }
 };
 
+//Ordenamiento por nombre
 export const orderName = (payload) => {
           return {
                     type: ORDER_NAME,
@@ -75,6 +78,7 @@ export const orderName = (payload) => {
           }
 };
 
+//Ordenamiento por puntuación
 export const orderScore = (payload) => {
           return {
                     type: ORDER_SCORE,
@@ -82,6 +86,7 @@ export const orderScore = (payload) => {
           }
 };
 
+//Filtrado por creado o existente
 export const createdOrNot = (payload) => {
   return {
     type: CREATED_OR_NOT,
@@ -89,6 +94,7 @@ export const createdOrNot = (payload) => {
   };
 };
 
+//filtrar por tipo de dietas
 export const filterDiets = (payload) => {
           return {
                     type: FILTER_DIETS,
@@ -96,6 +102,7 @@ export const filterDiets = (payload) => {
           }
 };
 
+//Creación nva. receta
 export const postNewRecipe = (payload) => async (dispatch) => {
   try {
      const response = await axios.post("https://pifood-luciana.herokuapp.com/recipes",payload);
@@ -107,6 +114,7 @@ export const postNewRecipe = (payload) => async (dispatch) => {
  
 };
 
+//Eliminar receta creada
 export const deleteRecipe = (payload) => async (dispatch) => {
   try {
     return await axios.delete("https://pifood-luciana.herokuapp.com/recipes", {

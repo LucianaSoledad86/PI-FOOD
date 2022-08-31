@@ -116,10 +116,6 @@ export const Reducer = (state = initialState, action) => {
                               recipes: dietsFilter
                     };
 
-          
-
-
-
           default:
             return state;
           }

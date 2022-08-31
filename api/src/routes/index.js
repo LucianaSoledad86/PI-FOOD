@@ -9,6 +9,7 @@ const { API_KEY } = process.env;
 const router = Router();
 module.exports = router;
 
+
 const getInfoApi = async () => {
   let recipesApi = await axios.get(
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=20&addRecipeInformation=true`
