@@ -16,10 +16,14 @@ export default function SerchBar({ newLoading, setCurrentPage }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(serchName(serch));
-    newLoading();
-    setSearch("");
-    setCurrentPage(1); //seteo la pag en 1
+    if (!serch) {
+      alert("Ingrese el nombre de la receta");
+    } else {
+      dispatch(serchName(serch));
+      // newLoading();
+      setSearch("");
+      setCurrentPage(1); //seteo la pag en 1
+    }
   };
 
   return (

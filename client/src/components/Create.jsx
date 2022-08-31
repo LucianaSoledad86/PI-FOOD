@@ -123,7 +123,7 @@ const Create = () => {
     dispatch(getRecipes());
     dispatch(getDiets());
     newLoading();
-  }, []);
+  },[]);
 
   return (
     <div className={styles.fondo}>
@@ -218,17 +218,15 @@ const Create = () => {
             <label className={styles.label}>
               <b>Preparación:</b>
             </label>
-            <input
-              type="text"
+            <textarea
               value={state.steps}
               name="steps"
               placeholder="Ingrese el paso a paso de la preparación de su receta"
               cols="80"
               rows="6"
-              required={true}
               className={styles.input}
               onChange={(e) => handleChange(e)}
-            />
+            ></textarea>
           </div>
 
           <div>

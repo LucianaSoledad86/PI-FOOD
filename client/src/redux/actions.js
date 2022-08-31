@@ -11,12 +11,15 @@ export const CREATED_OR_NOT = 'CREATED_OR_NOT'
 export const FILTER_DIETS = "FILTER_DIETS"
 
 export const getRecipes = () => async (dispatch) => {
-          
-          const recipes = await axios.get('http://localhost:3001/recipes')
-          return dispatch({
-                    type: GET_RECIPES,
-                    payload: recipes.data
-          })
+  try {
+       const recipes = await axios.get("http://localhost:3001/recipes");
+       return dispatch({
+         type: GET_RECIPES,
+         payload: recipes.data,
+       });
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export const getDiets = () => {
@@ -91,14 +94,25 @@ export const filterDiets = (payload) => {
           }
 };
 
-export const deleteRecipe = (payload) => async (dispatch) => {
-
-          return await axios.delete('http://localhost:3001/recipes', 
-          { data: payload})
-}
-
 export const postNewRecipe = (payload) => async (dispatch) => {
-  const response = await axios.post("http://localhost:3001/recipes", payload)
-//console.log(response)
-  return response;
+  try {
+     const response = await axios.post("http://localhost:3001/recipes",payload);
+     //console.log(response)
+     return response;
+  } catch (error) {
+    console.log(error)
+  }
+ 
 };
+
+export const deleteRecipe = (payload) => async (dispatch) => {
+  try {
+    return await axios.delete("http://localhost:3001/recipes", {
+      data: payload,
+    });
+  } catch (error) {
+    console.log(error); 
+  }       
+};
+
+
