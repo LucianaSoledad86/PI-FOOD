@@ -12,7 +12,9 @@ export const FILTER_DIETS = "FILTER_DIETS"
 
 export const getRecipes = () => async (dispatch) => {
   try {
-       const recipes = await axios.get("http://localhost:3001/recipes");
+       const recipes = await axios.get(
+         "https://pifood-luciana.herokuapp.com/recipes"
+       );
        return dispatch({
          type: GET_RECIPES,
          payload: recipes.data,
@@ -25,7 +27,7 @@ export const getRecipes = () => async (dispatch) => {
 export const getDiets = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/diets");
+      const { data } = await axios.get("https://pifood-luciana.herokuapp.com/diets");
       //console.log(data, "dataa");
       return dispatch({
         type: GET_DIETS,
@@ -39,7 +41,7 @@ export const getDiets = () => {
 
 export const serchName = (name) => async (dispatch) => {
           try {
-                  const response = await axios.get(`http://localhost:3001/recipes?name=${name}`)
+                  const response = await axios.get(`https://pifood-luciana.herokuapp.com/recipes?name=${name}`)
           
           return dispatch({
                   type: SERCH_NAME,
@@ -56,7 +58,7 @@ export const serchName = (name) => async (dispatch) => {
 
 export const recipeDetails = (id) => async dispatch => {
           try {
-              const response = await axios.get(`http://localhost:3001/recipes/${id}`) 
+              const response = await axios.get(`https://pifood-luciana.herokuapp.com/recipes/${id}`) 
               return dispatch({
                     type: RECIPE_DETAILS,
                     payload: response.data
@@ -96,7 +98,7 @@ export const filterDiets = (payload) => {
 
 export const postNewRecipe = (payload) => async (dispatch) => {
   try {
-     const response = await axios.post("http://localhost:3001/recipes",payload);
+     const response = await axios.post("https://pifood-luciana.herokuapp.com/recipes",payload);
      //console.log(response)
      return response;
   } catch (error) {
@@ -107,7 +109,7 @@ export const postNewRecipe = (payload) => async (dispatch) => {
 
 export const deleteRecipe = (payload) => async (dispatch) => {
   try {
-    return await axios.delete("http://localhost:3001/recipes", {
+    return await axios.delete("https://pifood-luciana.herokuapp.com/recipes", {
       data: payload,
     });
   } catch (error) {
