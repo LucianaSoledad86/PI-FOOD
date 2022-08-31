@@ -42,7 +42,7 @@ const Create = () => {
         [e.target.name]: e.target.value,
       })
     );
-    console.log(state, "handleChange");
+// console.log(state, "handleChange");
   };
 
   const handleRadio = (e) => {
@@ -78,6 +78,9 @@ const Create = () => {
     if (!state.name) {
       errors.name = "Nombre requerido";
     }
+    if (state.image !== "" && !/^(ftp|http|https):\/\/[^ "]+$/.test(state.image)) {
+      errors.image = "la imagen tiene que ser una Url ejemplo: http://";
+        }
     if (state.score < 0 || state.score > 100) {
       errors.score = "Puntuación valida de 0 a 100";
     }
@@ -166,6 +169,7 @@ const Create = () => {
               className={styles.input}
               onChange={(e) => handleChange(e)}
             />
+            {errors.image && <p className={styles.error}>{errors.image}</p>}
           </div>
 
           <div>
