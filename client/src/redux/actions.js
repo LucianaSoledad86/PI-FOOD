@@ -102,12 +102,6 @@ export const filterDiets = (payload) => {
           }
 };
 
-export const filterDish = (payload) => {
-  return {
-    type: FILTER_DISH,
-    payload
-  };
-}
 
 //Creación nva. receta
 export const postNewRecipe = (payload) => async (dispatch) => {
