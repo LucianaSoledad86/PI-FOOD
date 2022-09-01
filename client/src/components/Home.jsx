@@ -21,7 +21,6 @@ const Home = () => {
 
             const [orderName, setOrderName] = useState("");
             const [orderScore, setOrderScore] = useState("");
-            const [filterDish, setFilterDish] = useState("");
             const [loading, setLoading] = useState(false);
 
             const [currentPage, setCurrentPage] = useState(1);
@@ -30,9 +29,7 @@ const Home = () => {
             let indexOfLastDRecipe = currentPage * recipePerpage;
             let indexOfFirstRecipe = indexOfLastDRecipe - recipePerpage;
             
-            let currentRecipes = recipes.slice(
-              indexOfFirstRecipe,
-              indexOfLastDRecipe);
+            let currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastDRecipe);
 
             const paged = (numPage) => {
               setCurrentPage(numPage);
@@ -77,9 +74,7 @@ const Home = () => {
               setCurrentPage={setCurrentPage}
             />
 
-            <button className={styles.button}>
-              <Link className={styles.link} to="/create"> CREAR RECETA </Link>
-            </button>
+      <button className={styles.button}> <Link className={styles.link} to="/create"> CREAR RECETA </Link> </button>
 
             <button className={styles.button} onClick={(e) => handleClick(e)}> Actualizar </button>
 

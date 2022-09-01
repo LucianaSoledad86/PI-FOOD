@@ -31,7 +31,6 @@ export const Reducer = (state = initialState, action) => {
                               ...state,
                               diets: action.payload
                     };
-
           case SERCH_NAME:
                     return{
                               ...state,
@@ -100,7 +99,7 @@ export const Reducer = (state = initialState, action) => {
                               ...state,
                               recipes: action.payload === 'All' ? state.allRecipes : createdOrNot
                     };
-
+                    
           case FILTER_DIETS:
                     const { allRecipes } = state
 

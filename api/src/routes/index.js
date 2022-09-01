@@ -1,14 +1,12 @@
-const { Router } = require('express');
+const { Router } = require("express");
 require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const { Recipe, Diet } = require("../db");
 const { API_KEY } = process.env;
 
-
 const router = Router();
 module.exports = router;
-
 
 const getInfoApi = async () => {
   let recipesApi = await axios.get(
@@ -70,7 +68,7 @@ router.get("/recipes", async (req, res) => {
       recipe.length
         ? res.status(200).send(recipe)
         : res.status(400).send("Receta no encontrada");
-      console.log(recipes)
+      console.log(recipes);
     } else {
       res.status(200).send(recipes);
     }
@@ -79,8 +77,9 @@ router.get("/recipes", async (req, res) => {
 
 //RUTA DIETAS
 router.get("/diets", async (req, res) => {
-  
-const infoApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`)
+  const infoApi = await axios.get(
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`
+  );
 
   const dietsApi = await infoApi.data.results.map((diet) => {
     return {
@@ -110,6 +109,7 @@ const infoApi = await axios.get(`https://api.spoonacular.com/recipes/complexSear
   res.status(200).send(allDiets);
 });
 
+//ID
 router.get("/recipes/:id", async (req, res) => {
   const { id } = req.params;
   allRecipes().then((recipe) => {
@@ -122,8 +122,10 @@ router.get("/recipes/:id", async (req, res) => {
   });
 });
 
+//CREACIÖN
 router.post("/recipes", async (req, res) => {
-  let { name, sumary, score, healthy, diets, steps, image, dish, createdInDb } = req.body;
+  let { name, sumary, score, healthy, diets, steps, image, dish, createdInDb } =
+    req.body;
 
   let newRecipe = await Recipe.create({
     name,
@@ -146,7 +148,7 @@ router.post("/recipes", async (req, res) => {
       include: [Recipe],
     });
 
-    newRecipe.addDiet(dietDb)
+    newRecipe.addDiet(dietDb);
   });
 
   res.send("Receta creada con exito");
@@ -166,5 +168,3 @@ router.delete("/recipes", async (req, res) => {
     res.status(400).send("No se encontró receta");
   }
 });
-
-
