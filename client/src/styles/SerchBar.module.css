@@ -5,31 +5,26 @@
           font-size: 0px;
 }
 
-
-
-
-
 .btn {
-
+          border: none;
           border-radius: 8px;
-          height: 40px;
-
+          height: 35px;
           background: rgba(255, 225, 186, 0.787);
-
           font-size: 20px;
           transition: .8s ease;
 }
 
 .btn:hover {
-          background: rgba(255, 225, 186, 0.787);
+          background: rgba(255, 225, 186, 0.175);
+         
+                              border: 2px solid white;
+                              color: white;
+                   
 }
 
 .input {
-
-
           width: 200px;
           background: rgba(207, 207, 207, 0.787);
-          ;
           transition: all .3s ease;
           font-size: 18px;
           color: #fff;

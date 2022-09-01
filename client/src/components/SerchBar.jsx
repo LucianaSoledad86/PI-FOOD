@@ -5,7 +5,7 @@ import { serchName } from "../redux/actions";
 
 import styles from "../styles/SerchBar.module.css";
 
-export default function SerchBar({ newLoading, setCurrentPage }) {
+export default function SerchBar({ setCurrentPage }) {
   const dispatch = useDispatch();
   const [serch, setSearch] = useState("");
 
@@ -19,10 +19,9 @@ export default function SerchBar({ newLoading, setCurrentPage }) {
     if (!serch) {
       alert("Ingrese el nombre de la receta");
     } else {
-      dispatch(serchName(serch));
-      // newLoading();
-      setSearch("");
-      setCurrentPage(1); //seteo la pag en 1
+      dispatch(serchName(serch))
+      setSearch("")
+      setCurrentPage(1) //seteo la pag en 1
     }
   };
 

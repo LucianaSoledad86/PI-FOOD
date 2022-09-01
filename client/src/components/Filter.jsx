@@ -44,24 +44,22 @@ const handleOrderScore = (e) => {
     <div>
       <h3 className={styles.title}>Filtrado:</h3>
 
-      <div className={styles.containerFilter}>
+      <div>
         <select onChange={(e) => handleCreatedOrNot(e)} className={styles.filter}>
           
         <option value=""> Filtro por origen  </option>
-          <option className={styles.option} value="All">Todas </option>
-          <option className={styles.option} value="Created"> Creadas </option>
-          <option className={styles.option} value="Real"> Existentes </option>
+          <option  value="All">Todas </option>
+          <option  value="Created"> Creadas </option>
+          <option  value="Real"> Existentes </option>
 
         </select>
 
         <select onChange={(e) => handleFilterDiets(e)} className={styles.filter}>
 
         <option value=""> Filtro por tipo de DIETA </option>
+
           <option value="All">Todos</option> 
-          
-          {diets.map((diet, index) => (
-          <option className={styles.option} key={index} value={diet.name}> {diet.name} </option>
-          ))}
+          {diets.map((diet, index) => (<option  key={index} value={diet.name}> {diet.name} </option>))}
 
         </select>
 
@@ -69,12 +67,13 @@ const handleOrderScore = (e) => {
 
       <h3 className={styles.title}>Ordenamiento:</h3>
 
-      <div className={styles.containerFilter}>
+      <div>
         <select onChange={(e) => handleOrderName(e)} className={styles.filter}>
 
         <option value=""> Ordenar por nombre </option>
-          <option className={styles.option} value="Asc"> Ascendente </option>
-          <option className={styles.option} value="Desc"> Descendente </option>
+
+          <option value="Asc"> Ascendente </option>
+          <option value="Desc"> Descendente </option>
 
         </select>
 
@@ -82,8 +81,8 @@ const handleOrderScore = (e) => {
 
         <option value=""> Ordenar por puntuación </option>
           
-        <option className={styles.option} value="Asc"> Ascendente </option>
-        <option className={styles.option} value="Desc"> Descendente </option>
+        <option value="Asc"> Ascendente </option>
+        <option value="Desc"> Descendente </option>
         
         </select>
       </div>
