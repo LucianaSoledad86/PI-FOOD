@@ -10,8 +10,7 @@ module.exports = router;
 
 const getInfoApi = async () => {
   let recipesApi = await axios.get(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=20&addRecipeInformation=true`
-  );
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`);
   // console.log(recipe, 'info API')
 
   const apiInfo = await recipesApi.data.results.map((response) => {
@@ -24,6 +23,7 @@ const getInfoApi = async () => {
       score: response.healthScore,
       healthy: response.healthScore,
       diets: response.diets.map((response) => response),
+      chef: "Api",
       steps:
         response.analyzedInstructions[0] &&
         response.analyzedInstructions[0].steps
@@ -59,7 +59,8 @@ const allRecipes = async () => {
 //RUTAS RECETAS
 router.get("/recipes", async (req, res) => {
   const { name } = req.query;
-  allRecipes().then((recipes) => {
+  allRecipes()
+  .then((recipes) => {
     if (name) {
       let recipe = recipes.filter((recipe) =>
         recipe.name.toLowerCase().includes(name.toLowerCase())
@@ -124,7 +125,7 @@ router.get("/recipes/:id", async (req, res) => {
 
 //CREACIÖN
 router.post("/recipes", async (req, res) => {
-  let { name, sumary, score, healthy, diets, steps, image, dish, createdInDb } =
+  let { name, sumary, score, healthy, diets, chef, steps, image, dish, createdInDb } =
     req.body;
 
   let newRecipe = await Recipe.create({
@@ -135,6 +136,7 @@ router.post("/recipes", async (req, res) => {
     steps,
     image,
     dish,
+    chef,
     createdInDb,
   });
 

@@ -61,9 +61,14 @@ const Details = () => {
                 <p>{recipe[0].sumary}</p>
                 <hr />
 
+                <b>CHEF:</b>
+                <p>{recipe[0].chef}</p>
+
                 <b className={styles.tituloType}>Tipos de DIETA:</b>
                 <li>
-                  {!recipe[0].createdInDb ? recipe[0].diets + ' ' : recipe[0].diets.map((diet) => diet.name + ' ')}
+                  {!recipe[0].createdInDb
+                    ? recipe[0].diets + " "
+                    : recipe[0].diets.map((diet) => diet.name + " ")}
                 </li>
 
                 <hr />

@@ -37,6 +37,7 @@ export const Reducer = (state = initialState, action) => {
                               recipes: action.payload
                     };
 
+
           case RECIPE_DETAILS:
                     return{
                               ...state,

@@ -14,10 +14,12 @@ export const FILTER_DIETS = "FILTER_DIETS"
 export const getRecipes = () => async (dispatch) => {
   try {
        const recipes = await axios.get("https://pifood-luciana.herokuapp.com/recipes")
+       console.log(recipes);
        return dispatch({
          type: GET_RECIPES,
          payload: recipes.data,
-       });
+       })
+       
   } catch (error) {
     console.log(error)
   }
@@ -69,6 +71,7 @@ export const recipeDetails = (id) => async dispatch => {
                     console.log(error)        
           }
 };
+
 
 //Ordenamiento por nombre
 export const orderName = (payload) => {

@@ -16,8 +16,7 @@ const Create = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  let crearReceta = useSelector((state) =>
-    state.allRecipes.filter((r) => r.createdInDb)
+  let crearReceta = useSelector((state) =>state.allRecipes.filter((r) => r.createdInDb)
   );
 
   const unique = [...new Set(diets)];
@@ -29,6 +28,7 @@ const Create = () => {
     healthy: "",
     score: "",
     steps: "",
+    chef: "",
     diets: [],
     dish: "",
   });
@@ -116,7 +116,7 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data, "handleSubmit");
+    // console.log(data, "handleSubmit");
     dispatch(postNewRecipe(data));
     alert("Receta creada con éxito");
     setData({
@@ -126,6 +126,7 @@ const Create = () => {
       healthy: "",
       score: "",
       steps: "",
+      chef: "",
       diets: [],
       dish: "",
     });
@@ -196,6 +197,17 @@ const Create = () => {
               onChange={(e) => handleChange(e)}
             />
             {errors.sumary && <p className={styles.error}>{errors.sumary}</p>}
+          </div>
+
+          <div>
+            <label>Chef:</label>
+            <input
+              type="text"
+              value={data.chef}
+              name="chef"
+              className={styles.input}
+              onChange={(e) => handleChange(e)}
+            />
           </div>
 
           <div>
