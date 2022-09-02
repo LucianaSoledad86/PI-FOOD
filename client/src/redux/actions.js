@@ -4,6 +4,7 @@ export const GET_RECIPES = 'GET_RECIPES'
 export const GET_DIETS = 'GET_DIETS'
 export const SERCH_NAME = 'SERCH_NAME'
 export const RECIPE_DETAILS = 'RECIPE_DETAILS'
+export const DELETE_DETAILS = "DELETE_DETAILS";
 export const POST_NEW_RECIPE = 'POST_NEW_RECIPE'
 export const ORDER_NAME = 'ORDER_NAME'
 export const ORDER_SCORE = 'ORDER_SCORE'
@@ -72,6 +73,13 @@ export const recipeDetails = (id) => async dispatch => {
           }
 };
 
+export function deleteDetails () {
+  return async(dispatch) => {
+    return dispatch({
+      type: DELETE_DETAILS,
+    });
+  }
+};
 
 //Ordenamiento por nombre
 export const orderName = (payload) => {

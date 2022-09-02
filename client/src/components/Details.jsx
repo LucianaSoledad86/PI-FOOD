@@ -61,9 +61,6 @@ const Details = () => {
                 <p>{recipe[0].sumary}</p>
                 <hr />
 
-                <b>CHEF:</b>
-                <p>{recipe[0].chef}</p>
-
                 <b className={styles.tituloType}>Tipos de DIETA:</b>
                 <li>
                   {!recipe[0].createdInDb

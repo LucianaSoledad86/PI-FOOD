@@ -23,7 +23,6 @@ const getInfoApi = async () => {
       score: response.healthScore,
       healthy: response.healthScore,
       diets: response.diets.map((response) => response),
-      chef: "Api",
       steps:
         response.analyzedInstructions[0] &&
         response.analyzedInstructions[0].steps
@@ -125,7 +124,7 @@ router.get("/recipes/:id", async (req, res) => {
 
 //CREACIÖN
 router.post("/recipes", async (req, res) => {
-  let { name, sumary, score, healthy, diets, chef, steps, image, dish, createdInDb } =
+  let { name, sumary, score, healthy, diets, steps, image, dish, createdInDb } =
     req.body;
 
   let newRecipe = await Recipe.create({
@@ -136,7 +135,6 @@ router.post("/recipes", async (req, res) => {
     steps,
     image,
     dish,
-    chef,
     createdInDb,
   });
 

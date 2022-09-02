@@ -34,11 +34,11 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    chef: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: "Henry",
-    },
+    // chef: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    //   defaultValue: "Henry",
+    // },
     dish: {
       type: DataTypes.ENUM(
         "morning meal",

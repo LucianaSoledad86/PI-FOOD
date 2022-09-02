@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
-import { getRecipes, getDiets } from "../redux/actions";
+import { getRecipes, getDiets, deleteDetails } from "../redux/actions";
 
 import Filter from './Filter'
 import Spinner from './Spinner'
@@ -45,6 +45,7 @@ const Home = () => {
             useEffect(() => {
               dispatch(getRecipes());
               dispatch(getDiets());
+              dispatch(deleteDetails())
               newLoading();
             }, []);
 

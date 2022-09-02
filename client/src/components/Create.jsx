@@ -198,18 +198,7 @@ const Create = () => {
             />
             {errors.sumary && <p className={styles.error}>{errors.sumary}</p>}
           </div>
-
-          <div>
-            <label>Chef:</label>
-            <input
-              type="text"
-              value={data.chef}
-              name="chef"
-              className={styles.input}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-
+         
           <div>
             <label>
               <b>*Nivel de comida "saludable":</b>

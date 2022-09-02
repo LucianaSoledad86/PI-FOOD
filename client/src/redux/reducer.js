@@ -8,6 +8,7 @@ import {
   ORDER_SCORE,
   CREATED_OR_NOT,
   FILTER_DIETS,
+  DELETE_DETAILS,
 } from "./actions";
 
 const initialState = {
@@ -37,12 +38,17 @@ export const Reducer = (state = initialState, action) => {
                               recipes: action.payload
                     };
 
-
           case RECIPE_DETAILS:
                     return{
                               ...state,
                               details: action.payload
                     };
+
+          case DELETE_DETAILS:
+            return {
+              ...state,
+              details: []
+            }
 
           case POST_NEW_RECIPE:
                     return{
